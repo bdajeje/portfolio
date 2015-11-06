@@ -1,0 +1,94 @@
+<%
+  var types_str = "[";
+  for(var i = 0; i < types.length; ++i) {
+    types_str += "'" + types[i] + "'";
+    types_str += (i != types.length-1) ? ',' : ']';
+  }
+%>
+
+<div class="admin">
+  <% title = __('new_project') %>
+  <%- include ../page_title.ejs %>
+
+  <div class="project">
+    <%- include form %>
+  </div>
+
+  <% title = __('edit_project') %>
+  <%- include ../page_title.ejs %>
+
+  <div id="edit-project" class="project">
+    <select id="select-project">
+      <option><%= __('project_select') %></option>
+      <% projects.forEach(function(project) { %>
+        <option value="<%= project.id %>"><%= project.name %></option>
+      <% }) %>
+    </select>
+    <%- include form %>
+  </div>
+
+  <% title = __('delete_project') %>
+  <%- include ../page_title.ejs %>
+
+  <form method="post" action="<%= routes.admin.delete_project %>" onsubmit="return confirm('<%= __('delete_confirm') %>');">
+    <select name="id">
+      <option><%= __('project_select') %></option>
+      <% projects.forEach(function(project) { %>
+        <option value="<%= project.id %>"><%= project.name %></option>
+      <% }) %>
+    </select>
+    <input type="submit" value="<%= __('delete') %>" class="delete-project-btn" />
+  </form>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Autofill fields when selecting a project to edit
+    $('#select-project').change(function() {
+      var project_id = $(this).val();
+      if(!project_id)
+        return;
+
+      $.ajax({url: '<%= routes.project_info %>'.replace(':id', project_id)})
+      .done(function( data ) {
+        $form = $('#edit-project > form');
+        $form.attr('action', '<%= routes.admin.edit_project %>');
+        $form.find('input[name=id]').val( project_id );
+        $form.find('input[name=name]').val( data.name );
+        $form.find('input[name=video_url]').val( data.video_url );
+        $form.find('input[name=type]').val( data.type );
+        $form.find('input[name=description]').val( data.description );
+        $form.find('input[name=github]').val( data.github );
+        data.texts.forEach(function(text) {
+          $form.find('textarea[name=description-'+text.language+']').val( text.text );
+        });
+      });
+    });
+
+    // Toggle language textarea visibility when selecting a different description language
+    $('.language').change(function() {
+      var language = $(this).val();
+      $(this).parent().find('textarea').each(function() {
+        if( $(this).attr('name') == 'description-' + language )
+          $(this).show();
+        else
+          $(this).hide();
+      });
+    });
+
+    $(".type_autocomplete").autocomplete({
+      source: <%- types_str %>,
+      minLength: 0,
+      delay: 0,
+      autoFocus: true,
+      open: function() {
+        // Resize items width to match parent's one
+        var parent_width = $(this).outerWidth();
+        console.log($(this));
+        $(this).data('ui-autocomplete').menu.element.outerWidth(parent_width);
+      }
+    }).focus(function() {
+      $(this).autocomplete( "search", "" );
+    });
+  });
+</script>

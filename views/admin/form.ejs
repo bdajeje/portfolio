@@ -1,0 +1,24 @@
+<form method="post" action="<%= routes.admin.new_project %>" enctype="multipart/form-data">
+  <div class="inputs">
+    <input type="text" name="name" placeholder="<%= __('name') %>" required />
+    <input type="url" name="video_url" placeholder="<%= __('video_url') %>" required />
+    <input type="text" name="type" placeholder="<%= __('type') %>" class="type_autocomplete" required />
+    <input type="url" name="github" placeholder="<%= __('github').toLowerCase() %>" required />
+    <input type="file" name="icon" accept="image/png" required />
+  </div>
+  <div class="description-wrapper">
+    <select name="description-language" class="language">
+      <% languages.locales.forEach(function(language) { %>
+        <option value="<%= language %>"><%= __('lang_'+language) %></option>
+      <% }) %>
+    </select>
+    <% for( var i = 0; i < languages.locales.length; ++i) {
+      var style = (i == 0) ? '' : 'display:none';
+    %>
+      <textarea name="description-<%= languages.locales[i] %>" placeholder="<%= __('description') %>" style="<%= style %>"></textarea>
+    <% } %>
+  </div>
+  <input type="submit" value="<%= __('submit') %>" />
+
+  <input type="hidden" name="id" />
+</form>

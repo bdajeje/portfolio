@@ -1,0 +1,18 @@
+<%- include page_title.ejs %>
+
+<table class="contact-info">
+  <tr>
+    <td class="label"><%= __('project_type') %>:</td>
+    <td class="value"><%= __(project.type) %></td>
+  </tr>
+  <tr>
+    <td class="label"><%= __('project_sources') %>:</td>
+    <td class="value"><a href="<%= project.github %>" target="_blank"><%= __('github').toLowerCase() %></a></td>
+  </tr>
+</table>
+
+<iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/OPLfS3D3sQ8" frameborder="0" allowfullscreen></iframe>
+
+<div class="project-description">
+  <%- project.project_texts[0].text %>
+</div>

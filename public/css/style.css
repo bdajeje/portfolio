@@ -1,0 +1,320 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: #ECEBE8;
+  color: black;
+  font-family: sans-serif;
+  font-size: 18px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto; }
+
+h2 {
+  font-weight: bold;
+  font-size: 25px;
+  white-space: nowrap;
+  overflow: hidden; }
+
+h2 > .before,
+h2 > .after {
+  border-top: 2px solid black;
+  height: 2px;
+  display: inline-block;
+  padding-top: 8px; }
+
+h2 > .before {
+  margin-right: 10px;
+  width: 25px; }
+
+h2 > .after {
+  margin-left: 10px;
+  width: 100%; }
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 35px;
+  margin: 0;
+  color: black;
+  text-shadow: 0px 0px 5px white; }
+
+header {
+  border: 2px solid black;
+  border-left: none;
+  width: 100%; }
+
+a {
+  color: black; }
+
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 21px;
+  margin-bottom: 10px;
+  cursor: pointer; }
+
+.flip-container:last-child {
+  margin-right: 0px; }
+
+/* flip the pane when hovered */
+.flip-container:hover .flipper {
+  transform: rotateY(180deg); }
+
+.flip-container,
+.front,
+.back {
+  width: 150px;
+  height: 150px; }
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative; }
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 5px 1px white; }
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg); }
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg); }
+
+.front .icon {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 53px;
+  bottom: 20px; }
+
+.content {
+  padding: 10px;
+  position: relative; }
+
+.description {
+  margin: 7px;
+  font-size: 14px;
+  line-height: 14px;
+  overflow: hidden;
+  height: 139px;
+  display: inline-block;
+  color: black !important; }
+
+.menu {
+  margin: 0;
+  padding: 0;
+  float: right;
+  line-height: 41px; }
+
+.menu-item {
+  list-style: none;
+  display: inline-block;
+  border-left: 2px solid black;
+  vertical-align: top;
+  margin-left: -6px;
+  margin-right: -1px; }
+
+.menu-item a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 16px;
+  vertical-align: top;
+  transition: all 0.5s; }
+
+.menu-item a.selected {
+  background-color: black !important;
+  color: #ECEBE8 !important; }
+
+.menu-item a:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ECEBE8; }
+
+.menu-item.selected a {
+  color: #ECEBE8;
+  cursor: default; }
+
+.name {
+  font-weight: bold;
+  line-height: 41px; }
+
+.row {
+  margin: 0; }
+
+/* http://callmenick.com/post/slide-down-menu-with-jquery-and-css */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+nav ul li {
+  display: inline-block;
+  position: relative; }
+
+nav li ul {
+  position: absolute; }
+
+ul.sub-menu {
+  display: none;
+  background-color: #ECEBE8;
+  border-top: 2px solid black; }
+
+ul.sub-menu > a {
+  border: 2px solid black;
+  border-top: none;
+  width: 100%; }
+
+.dropdown > a {
+  cursor: default; }
+
+.click-to-show {
+  font-style: italic;
+  cursor: pointer; }
+
+.click-to-show:hover {
+  text-decoration: underline; }
+
+.contact-info {
+  margin-top: 20px; }
+
+.contact-info > td {
+  margin-top: 15px; }
+
+.label {
+  color: black;
+  font-size: 16px;
+  text-align: right;
+  line-height: 30px;
+  font-weight: normal; }
+
+.value {
+  font-size: 19px;
+  font-weight: bold; }
+
+footer {
+  font-size: 16px;
+  text-align: center;
+  border: 2px solid black;
+  border-left: none;
+  border-right: none;
+  padding: 10px 0;
+  margin-top: 40px;
+  margin-bottom: 10px; }
+
+.video {
+  float: right;
+  width: 400px;
+  height: 225px;
+  margin-top: 35px; }
+
+.project-description {
+  font-size: 18px;
+  width: 430px;
+  text-align: justify;
+  margin-top: 30px;
+  min-height: 225px; }
+
+.admin {
+  position: relative; }
+  .admin .login {
+    display: block;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px; }
+  .admin form {
+    margin-top: 20px; }
+    .admin form input,
+    .admin form textarea {
+      width: 100%;
+      margin-bottom: 20px;
+      border: 2px solid black;
+      padding: 5px 10px;
+      font-size: 16px;
+      transition: all 0.5s; }
+    .admin form input:focus {
+      box-shadow: 0px 0px 5px; }
+    .admin form input[type=submit]:hover {
+      text-decoration: underline; }
+    .admin form .description-wrapper {
+      float: right;
+      height: 250px;
+      width: 50%; }
+      .admin form .description-wrapper textarea {
+        height: 220px; }
+    .admin form select {
+      border: 2px solid black;
+      padding: 5px 10px;
+      background-color: white;
+      margin-top: 10px; }
+    .admin form .delete-project-btn {
+      display: inline-block;
+      width: auto;
+      padding: 5px 20px; }
+    .admin form .language {
+      margin-top: 0 !important;
+      margin-bottom: -2px; }
+  .admin .project {
+    margin-bottom: 40px; }
+    .admin .project form {
+      width: 100%;
+      /*input {
+        width: 203px;
+        display: inline-block;
+        margin: 0;
+        margin-right: 10px;
+      }
+      input:last-child {
+        margin-right: 0px;
+      }*/ }
+      .admin .project form .inputs {
+        display: inline-block;
+        width: 45%;
+        vertical-align: top; }
+      .admin .project form input[type=submit] {
+        width: 100%;
+        margin-top: 20px; }
+    .admin .project select {
+      border: 2px solid black;
+      padding: 5px 10px;
+      background-color: white;
+      margin-top: 10px;
+      width: 100%; }
+  .admin input[type=file] {
+    border: none;
+    padding: 0; }
+
+.ui-autocomplete {
+  list-style: none;
+  padding: 0;
+  background-color: white;
+  border: 2px solid black; }
+
+.ui-menu-item {
+  padding-left: 10px; }
+
+.ui-menu-item:hover,
+.ui-menu-item:focus {
+  background-color: black;
+  color: white; }
+
+.ui-helper-hidden-accessible {
+  display: none !important; }
+
+/*# sourceMappingURL=style.css.map */

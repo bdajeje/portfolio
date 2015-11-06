@@ -1,0 +1,24 @@
+<%- include page_title.ejs %>
+
+<table class="contact-info">
+  <tr>
+    <td class="label"><%= __('fistname') %>:</td>
+    <td class="value">J&eacute;r&eacute;my</td>
+  </tr>
+  <tr>
+    <td class="label"><%= __('lastname') %>:</td>
+    <td class="value">Gouss&eacute;</td>
+  </tr>
+  <tr>
+    <td class="label"><%= __('phone') %>:</td>
+    <td class="value"><span class="value click-to-show" target="<%= routes.info.replace(':value', 'phone') %>"><%= __('click_to_show') %></span></td>
+  </tr>
+  <tr>
+    <td class="label"><%= __('email') %>:</td>
+    <td class="value"><span class="value click-to-show" target="<%= routes.info.replace(':value', 'email') %>"><%= __('click_to_show') %></span></td>
+  </tr>
+  <tr>
+    <td class="label"><%= __('address') %>:</td>
+    <td class="value"><%= __('montreal') %></td>
+  </tr>
+</table>

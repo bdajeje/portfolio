@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>Jeremy Gousse - Portfolio</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <span class="name"><%= __('portfolio') %> - J&eacute;r&eacute;my Gouss&eacute;</span>
+      <ul class="menu">
+        <%
+          for(var i = 0; i < menus.length; ++i) {
+            var menu     = menus[i];
+            var selected = (page == menu.name) ? 'selected' : '';
+            var blank    = (menu.blank) ? '_blank' : ''; %>
+            <%- include menu_item %>
+        <% }
+        if( admin ) {
+          blank = '', selected = '';
+          menu = { url: routes.admin.logout, name: 'logout' } %>
+          <%- include menu_item %>
+        <% } %>
+        <li class="menu-item">
+          <nav>
+            <ul>
+              <li class="dropdown">
+                <a href="#"><%= languages.current.toUpperCase() %></a>
+                <ul class="sub-menu">
+                  <%
+                    var locales = languages.locales;
+                    for(var i = 0; i < locales.length; ++i) {
+                      var language = locales[i];
+                      if(language == languages.current)
+                        continue; %>
+                      <a href="/language/<%= language %>"><%= language.toUpperCase() %></a>
+                  <% } %>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </li>
+      </ul>
+    </header>
+
+    <div class="page-content">
+      <%- body %>
+    </div>
+
+    <footer><%= __('footer') %></footer>
+
+    <script>
+      $(document).ready(function() {
+        // Menu slide
+        var $drop_down = $('.dropdown');
+        var $sub_menu  = $drop_down.children('.sub-menu');
+        $sub_menu.css('width', $drop_down.outerWidth() + 'px');
+
+        var slide_speed = 200;
+        $drop_down.hover(
+          function() { $sub_menu.slideDown(slide_speed); },
+          function() { $sub_menu.slideUp(slide_speed); }
+        );
+
+        // Click to show
+        $('.click-to-show').click(function() {
+          // Unbind to prevent future clicks
+          $(this).unbind();
+
+          var $self  = $(this);
+          var target = $self.attr('target');
+          var result = undefined;
+
+          var waitForData = function() {
+            if(result)
+              $self.text( result ).fadeIn();
+            else
+              setTimeout(waitForData, 200);
+          }
+
+          // Send ajax query to retrieve data
+          $.ajax({ url: target }).done(function( data ) {
+            result = data;
+          });
+
+          // Fade text
+          $self.fadeOut(function() {
+            // Wait for data before showing new text
+            waitForData();
+
+            // Remove style
+            $self.removeClass('click-to-show');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
