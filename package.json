@@ -7,6 +7,7 @@
   },
   "author": "Jeremy Gousse <jeremy@odetechnologies.com>",
   "dependencies": {
+    "async": "^1.5.1",
     "backbone": "^1.2.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
@@ -21,8 +22,10 @@
     "i18n": "^0.5.0",
     "multer": "^1.1.0",
     "mysql": "^2.9.0",
+    "node-parallel": "^0.1.5",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
+    "promise": "^7.1.1",
     "readline-sync": "^1.2.21",
     "sequelize": "^2.0.0-rc1",
     "sequelize-cli": "^2.1.0",

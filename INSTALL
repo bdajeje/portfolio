@@ -1,0 +1,31 @@
+- Install Node.js:
+	Follow these instructions: http://www.hostingadvice.com/how-to/install-nodejs-ubuntu-14-04
+
+- Install MySQL:
+	sudo apt-get install mysql-server mysql-client
+
+- Create database 'portfolio':
+	CREATE DATABASE 'portfolio';
+
+- Install node packages:
+	npm install --save
+	npm update
+
+- Create environment variables:
+        PORTFOLIO_DB_USER
+        PORTFOLIO_DB_HOST
+        PORTFOLIO_DB_PASSWORD
+        PORTFOLIO_DB_NAME
+        PORTFOLIO_SESSION_SECRET
+
+- Start server to automatically create sql tables:
+	./bin/www
+
+- Shutdown server
+
+- Import sql script(s) into database from './sql' folder
+        mysql -u root -p portfolio < ./sql/projects.sql
+
+- [optional] Create an admin user
+
+- Star server again, go to http://localhost:8080, enjoy :)

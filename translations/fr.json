@@ -42,5 +42,7 @@
 	"delete": "Supprimer",
 	"delete_confirm": "Supprimer le projet?",
 	"lang_en": "Anglais",
-	"lang_fr": "Francais"
+	"lang_fr": "Francais",
+	"previous": "Précédent",
+	"next": "Suivant"
 }

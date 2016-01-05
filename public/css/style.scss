@@ -1,6 +1,7 @@
 $color_black: black;
 $color_background: #ECEBE8;
 $video_height: 225px;
+$text_transition_speed: 0.5s;
 
 body {
   margin: 0;
@@ -56,61 +57,39 @@ a {
   color: black;
 }
 
-/* entire container, keeps perspective */
 .flip-container {
-  perspective: 1000;
   display: inline-block;
   margin-top: 20px;
   margin-right: 21px;
   margin-bottom: 10px;
   cursor: pointer;
+  vertical-align: top;
+  transition: all 0.2s;
+}
+.flip-container:hover {
+  text-decoration: none;
 }
 .flip-container:last-child {
   margin-right: 0px;
 }
-/* flip the pane when hovered */
-.flip-container:hover .flipper {
-  transform: rotateY(180deg);
+.flip-container:hover {
+  box-shadow: 0px 0px 5px black;
 }
 
 .flip-container,
-.front,
-.back {
+.project-tile {
   width: 150px;
   height: 150px;
 }
 
-/* flip speed goes here */
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-
+.front {
   position: relative;
 }
 
-/* hide back of pane during swap */
-.front, .back {
-  backface-visibility: hidden;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
+.project-tile {
   border: 2px solid $color_black;
   background-color: rgba(0, 0, 0, 0.05);
   box-shadow: 0px 0px 5px 1px white;
-}
-
-/* front pane, placed above back */
-.front {
-  z-index: 2;
-  /* for firefox 31 */
-  transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-  transform: rotateY(180deg);
 }
 
 .front .icon {
@@ -131,7 +110,7 @@ a {
   font-size: 14px;
   line-height: 14px;
   overflow: hidden;
-  height: 139px;
+  height: 125px;
   display: inline-block;
   color: black !important;
 }
@@ -158,7 +137,7 @@ a {
   padding: 0 20px;
   font-size: 16px;
   vertical-align: top;
-  transition: all 0.5s;
+  transition: all $text_transition_speed;
 }
 .menu-item a.selected {
   background-color: $color_black !important;
@@ -379,9 +358,41 @@ footer {
 
 .ui-menu-item:hover,
 .ui-menu-item:focus {
-  background-color: black;
+  background-color: $color_black;
   color: white;
 }
 .ui-helper-hidden-accessible {
   display: none !important;
+}
+
+.js-toggle-to {
+  cursor: pointer;
+}
+
+.project-navigation {
+  position: relative;
+  height: 40px;
+  margin-top: 30px;
+
+  > a {
+    position: absolute;
+    top: 10px;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 2px solid $color_black;
+    transition: all $text_transition_speed;
+  }
+  > a:hover {
+    background-color: $color_black;
+    color: white;
+    text-decoration: none;
+  }
+
+  .previous {
+    left: 0px;
+  }
+
+  .next {
+    right: 0px;
+  }
 }

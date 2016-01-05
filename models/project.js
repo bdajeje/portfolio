@@ -4,7 +4,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Project = sequelize.define("project", {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
@@ -33,7 +33,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models) {
-        Project.hasMany(models.project_text)
+        Project.hasMany(models.project_text, {
+          onDelete: 'RESTRICT',
+          foreignKey: {
+            allowNull: false
+          }
+        });
       },
       allTypes: function(callback) {
         sequelize.query("SELECT DISTINCT type FROM projects").success(function(rows) {

@@ -5,42 +5,56 @@
       categories[project.type] = [];
 
     categories[project.type].push( project );
-  }) %>
+  })
+%>
 
 <% // For each category
-  Object.keys(categories).forEach(function(category_type) {  %>
-  <h2>
+  var iteration = 0;
+  var project_id = 0;
+  Object.keys(categories).forEach(function(category_type) {
+    iteration++;
+%>
+
+  <h2 class="js-toggle-to" js-toggle-target="category-wrapper-<%= iteration %>">
     <span class="before"> </span>
     <%= __(category_type) %>
     <span class="after"> </span>
   </h2>
 
-  <% // For each project
-    var row_size = 5;
-    var projects = categories[category_type];
-    for(var i = 0; i < projects.length; ++i) {
-      var project = projects[i];
+  <div id="category-wrapper-<%= iteration %>">
+    <% // For each project
+      var row_size = 5;
+      var projects = categories[category_type];
+      for(var i = 0; i < projects.length; ++i) {
+        project_id++;
+        var project = projects[i];
 
-      if(i % row_size == 0) { %>
-        <div class="row">
-      <% } %>
+        if(i % row_size == 0) { %>
+          <div class="row">
+        <% } %>
 
-      <a href="<%= routes.project.replace(':name', project.urlName()) %>" class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-          <div class="front">
+        <a class="flip-container front"
+           href="<%= routes.project.replace(':name', project.urlName()) %>"
+           id="flip-container-<%= project_id %>">
+          <div style="display:none;" class="project-tile">
             <h3 class="title"><%= project.name %></h3>
             <img src="/images/projects/<%= project.name %>.png" class="icon" />
           </div>
-          <div class="back">
-            <div class="description"><%- project.project_texts[0].text %></div>
-          </div>
-        </div>
-      </a>
+        </a>
 
-      <% if(i != 0 && ((i+1) % row_size) == 0 || i == projects.length) { %>
-        </div>
-      <% } %>
+        <% if(i != 0 && ((i+1) % row_size) == 0 || i == projects.length-1) { %>
+          </div>
+        <% } %>
 
     <% } %>
+  </div>
 
 <% }) %>
+
+<script src="/js/toggles.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.project-tile').fadeIn(750);
+  });
+</script>

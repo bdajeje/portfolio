@@ -11,8 +11,18 @@
   </tr>
 </table>
 
-<iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/OPLfS3D3sQ8" frameborder="0" allowfullscreen></iframe>
+<iframe class="video" width="560" height="315" src="<%- project.video_url %>" frameborder="0" allowfullscreen></iframe>
 
 <div class="project-description">
   <%- project.project_texts[0].text %>
+</div>
+
+<div class="project-navigation">
+  <% if( previous_project ) { %>
+    <a class="previous" href="<%= routes.project.replace(':name', previous_project.name) %>"><%= __('previous').toUpperCase() %></a>
+  <% } %>
+
+  <% if( next_project ) { %>
+    <a class="next" href="<%= routes.project.replace(':name', next_project.name) %>"><%= __('next').toUpperCase() %></a>
+  <% } %>
 </div>

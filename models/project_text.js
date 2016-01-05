@@ -18,18 +18,13 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     text: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     }
   }, {
     classMethods: {
       associate: function(models) {
-        ProjectText.belongsTo(models.project, {
-          onDelete: "CASCADE",
-          foreignKey: {
-            allowNull: false
-          }
-        });
+        ProjectText.belongsTo(models.project);
       }
     },
     timestamps: false

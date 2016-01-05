@@ -42,5 +42,7 @@
 	"delete": "Delete",
 	"delete_confirm": "Really delete a project?",
 	"lang_en": "English",
-	"lang_fr": "French"
+	"lang_fr": "French",
+	"previous": "Previous",
+	"next": "Next"
 }

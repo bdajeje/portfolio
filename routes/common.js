@@ -19,5 +19,5 @@ module.exports = {
       edit_project: '/admin/edit',
       delete_project: '/admin/delete'
     }
-  },
+  }
 }
