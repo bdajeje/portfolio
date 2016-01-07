@@ -22,7 +22,7 @@ module.exports = function(passport) {
       Admin.find({
         where: { username: username },
         attributes: ['password']
-      }).success(function(admin) {
+      }).then(function(admin) {
         // No admin found
         if(!admin)
           return done(null, false);

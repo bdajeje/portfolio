@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
         });
       },
       allTypes: function(callback) {
-        sequelize.query("SELECT DISTINCT type FROM projects").success(function(rows) {
+        sequelize.query("SELECT DISTINCT type FROM projects").then(function(rows) {
           var types = [];
           rows.forEach(function(row) {
             types.push( row.type );
